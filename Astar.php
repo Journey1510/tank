@@ -80,7 +80,7 @@ class Astar
             $k = array_search($currentNode, $this->openList);
             if($k !== false)
             {
-                array_splice($this->openList, $k);
+                array_splice($this->openList, $k, 1);
             }
 
             $this->closeList[] = $currentNode;
