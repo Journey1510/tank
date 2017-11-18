@@ -8,9 +8,9 @@ class Astar
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 1, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1, 0, 0, 0],
             [0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -172,7 +172,7 @@ class Astar
         return null;
     }
 
-    public function getShortestStep (Node $start, Node $end)
+    public function getShortestPath (Node $start, Node $end)
     {
         $path = [];
         $parent = $this->findPath($start,$end);
@@ -183,13 +183,13 @@ class Astar
             $parent = $parent->parent;
         }
 
-        return count($path) - 1;
+        return $path;
     }
 
     public function show ()
     {
-        $start = new Node(5,1);
-        $end = new Node(5,5);
+        $start = new Node(4,0);
+        $end = new Node(3,5);
 
         $size = count($this->map);
 
@@ -208,6 +208,14 @@ class Astar
             $path[] = $parent;
             $parent = $parent->parent;
         }
+
+        echo count($path)."------------\n";
+
+        foreach ($path as $key => $node)
+        {
+            echo $key." : ( ".$node->x.", ".$node->y." )\n";
+        }
+        echo "------------";
 
         echo "\n";
 
